@@ -1,11 +1,15 @@
 package br.com.mariojp.solid.isp;
 
 public class OfficeService {
-    private final MultiFunctionDevice device;
-    public OfficeService(MultiFunctionDevice device){ this.device = device; }
-    public void printReport(String content){
+    private final Printer device;
+
+    public OfficeService(Printer device) {
+        this.device = device;
+    }
+
+    public void printReport(String content) {
         device.print(content);
-        // BUG: chama scan sem necessidade
-        device.scan("audit.txt");
+        // ❌ REMOVER scan – não é responsabilidade do OfficeService
+        // Corrigido: não há mais chamada a scan()
     }
 }
